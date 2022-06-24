@@ -1,0 +1,19 @@
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns:xs="http://www.w3.org/2001/XMLSchema"
+				xmlns:data="http://example.com/data"
+				xmlns:text="http://exselt.net/text"
+				xmlns:err="http://www.w3.org/2005/xqt-errors"
+				exclude-result-prefixes="xs xsl data text err"
+				version="3.0">
+
+	<xsl:output method="text" media-type="text/json" indent="yes"/>
+
+	<xsl:template match='/'>
+		<xsl:text>[{"ПФР":</xsl:text>"<xsl:value-of select="//*[local-name()='СтраховойНомерПФР']"/>
+		<xsl:text>","Имя":</xsl:text>"<xsl:value-of select="//*[contains(name(), 'КлючевыеСвойства')]/*[contains(name(), 'Наименование')]"/>
+		<xsl:text>","Организация":{"КодЗаказчика":</xsl:text>"<xsl:value-of select="//*[contains(name(), 'Организация')]/*[contains(name(), 'КодЗаказчика')]"/>
+		<xsl:text>","ИНН":</xsl:text>"<xsl:value-of select="//*[contains(name(), 'Организация')]/*[contains(name(), 'ИНН')]"/>
+		<xsl:text>"}}]</xsl:text>
+	</xsl:template>
+
+</xsl:stylesheet>
